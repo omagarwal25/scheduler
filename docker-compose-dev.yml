@@ -1,0 +1,44 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:4.2.2
+    container_name: mongo
+    platform: linux/x86_64
+    ports:
+      - 27017:27017
+    expose:
+      - 27017
+    networks:
+      - nestjs-network
+  scheduler-frontend:
+    image: scheduler-frontend:dev
+    build:
+      context: ./client
+      target: dev
+    #  environment:
+    # PROXY_API: http://playground-web-backend:8080/
+    ports:
+      - 30001:3000
+    restart: always
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+  scheduler-backend:
+    image: scheduler-backend:dev
+    build:
+      context: ./server
+      target: dev
+    restart: always
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    depends_on:
+      - mongo
+    ports:
+      - 8080:3000
+      - 9229:9229
+    networks:
+      - nestjs-network
+networks:
+  nestjs-network:
+    driver: bridge
