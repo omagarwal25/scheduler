@@ -30,8 +30,9 @@ const Filters = ({ onNewFilter, onClearFilter, courses, filter }: Props) => {
         <Button
           onClick={onClearFilter}
           additionalCSS="font-semibold bg-red-600 text-white"
-          text="Clear Filters"
-        />
+        >
+          Clear Filters
+        </Button>
       )}
     </div>
   );

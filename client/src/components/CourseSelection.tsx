@@ -91,6 +91,7 @@ const CourseSelection = ({
         onGo={getClasses}
         clearSelections={clearSelections}
         selected={selected}
+        search={search}
       />
       <Courses
         courses={courses}

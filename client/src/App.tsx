@@ -26,10 +26,11 @@ const App = () => {
             <h1>{e}</h1>
           ))}
           <Button
-            text="Go Back"
             onClick={handleToggleShowCourses}
             additionalCSS="m-2 w-auto text-white bg-red-600 m-2"
-          />
+          >
+            Go Back
+          </Button>
         </>
       )}
     </div>

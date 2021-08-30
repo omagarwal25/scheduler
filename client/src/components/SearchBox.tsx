@@ -1,18 +1,29 @@
 import { ReactComponent as SearchSvg } from '../search.svg';
+import { ReactComponent as CloseSvg } from '../close.svg';
 interface Props {
   onNewSearch: (value: string) => void;
+  search: string;
 }
 
-const SearchBox = ({ onNewSearch }: Props) => {
+const SearchBox = ({ onNewSearch, search }: Props) => {
   return (
-    <div className="flex flex-row p-2 m-2 rounded-md shadow-md w-min">
+    <div className="flex flex-row flex-wrap w-1/4 p-2 m-2 rounded-md shadow-md">
       <SearchSvg />
       <input
-        className="w-max focus:border-transparent focus:outline-none"
+        className="flex-grow w-auto focus:border-transparent focus:outline-none"
         type="search"
         onChange={(e) => onNewSearch(e.target.value)}
         placeholder="Search for Classes"
+        value={search}
       />
+      {search !== '' && (
+        <div
+          className="order-last cursor-pointer"
+          onClick={() => onNewSearch('')}
+        >
+          <CloseSvg />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,16 +1,16 @@
 interface Props {
   onClick: () => void;
-  text: string;
   additionalCSS: string;
+  children: JSX.Element | string;
 }
 
-const Button = ({ onClick, text, additionalCSS }: Props) => {
+const Button = ({ onClick, additionalCSS, children }: Props) => {
   return (
     <button
       onClick={onClick}
-      className={`p-2 rounded-md shadow-md  hover:shadow-none ${additionalCSS}`}
+      className={`p-2 rounded-md shadow-md hover:shadow-none ${additionalCSS}`}
     >
-      {text}
+      {children}
     </button>
   );
 };

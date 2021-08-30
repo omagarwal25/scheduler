@@ -7,23 +7,29 @@ interface Props {
   onGo: () => Promise<void>;
   clearSelections: () => void;
   selected: CourseInterface[];
+  search: string;
 }
 
-const Toolbar = ({ onNewSearch, onGo, clearSelections, selected }: Props) => {
+const Toolbar = ({
+  onNewSearch,
+  onGo,
+  clearSelections,
+  selected,
+  search,
+}: Props) => {
   return (
     <div className="flex flex-row">
-      <SearchBox onNewSearch={onNewSearch} />
-      <Button
-        onClick={onGo}
-        additionalCSS="w-auto text-white bg-green-700 m-2"
-        text="Generate Schedule 📗"
-      />
+      <SearchBox onNewSearch={onNewSearch} search={search} />
+      <Button onClick={onGo} additionalCSS="w-auto text-white bg-green-700 m-2">
+        Generate Schedule 📗
+      </Button>
       {selected.length > 0 && (
         <Button
           additionalCSS="w-auto text-white bg-red-600 m-2"
           onClick={clearSelections}
-          text="Clear Selections"
-        />
+        >
+          Clear Selections
+        </Button>
       )}
     </div>
   );
