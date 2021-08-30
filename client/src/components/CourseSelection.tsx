@@ -37,20 +37,24 @@ const CourseSelection = ({
   }, []);
 
   const getClasses = async () => {
-    const data = selected.map((e) => e.name);
-    try {
-      const response: AxiosResponse = await axios.post(
-        'http://localhost:8080/scheduler/',
-        data,
-      );
+    if (selected.length > 0) {
+      const data = selected.map((e) => e.name);
+      try {
+        const response: AxiosResponse = await axios.post(
+          'http://localhost:8080/scheduler/',
+          data,
+        );
 
-      const output: string[] = response.data;
+        const output: string[] = response.data;
 
-      onToggleShowCourses();
+        onToggleShowCourses();
 
-      onSetRequiedCourses(output);
-    } catch (error) {
-      console.log(error);
+        onSetRequiedCourses(output);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      alert('You must select at least one class');
     }
   };
 

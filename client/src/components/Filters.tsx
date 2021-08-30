@@ -29,7 +29,7 @@ const Filters = ({ onNewFilter, onClearFilter, courses, filter }: Props) => {
       {filter.length > 0 && (
         <Button
           onClick={onClearFilter}
-          additionalCSS="font-semibold bg-red-600 text-white"
+          additionalCSS="font-semibold bg-red-600 text-white hover:bg-red-500"
         >
           Clear Filters
         </Button>

@@ -18,6 +18,7 @@ const SearchBox = ({ onNewSearch, search }: Props) => {
       />
       {search !== '' && (
         <div
+          title="Clear Search"
           className="order-last cursor-pointer"
           onClick={() => onNewSearch('')}
         >

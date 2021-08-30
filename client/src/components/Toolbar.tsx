@@ -20,12 +20,16 @@ const Toolbar = ({
   return (
     <div className="flex flex-row">
       <SearchBox onNewSearch={onNewSearch} search={search} />
-      <Button onClick={onGo} additionalCSS="w-auto text-white bg-green-700 m-2">
+      <Button
+        onClick={onGo}
+        additionalCSS="w-auto text-white bg-green-700 m-2 hover:bg-green-600"
+        title="Generate Your High School Schedule"
+      >
         Generate Schedule 📗
       </Button>
       {selected.length > 0 && (
         <Button
-          additionalCSS="w-auto text-white bg-red-600 m-2"
+          additionalCSS="w-auto text-white bg-red-600 m-2 hover:bg-red-500"
           onClick={clearSelections}
         >
           Clear Selections
