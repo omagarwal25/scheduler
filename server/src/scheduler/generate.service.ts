@@ -22,7 +22,13 @@ export class GenerateService {
       allPaths.push(this.findMostEfficientRoutes(array));
     }
 
-    return allPaths;
+    const output = [];
+
+    allPaths.forEach((e) => {
+      e.forEach((y: string) => output.push(y));
+    });
+
+    return output.filter((item, index, arr) => arr.indexOf(item) === index);
   }
 
   private findMostEfficientRoutes(paths: any[]) {
@@ -58,8 +64,6 @@ export class GenerateService {
   private async getAllPathsWithInformation(courses: string[]) {
     const g = await this.generateGraph(await this.coursesService.findAll());
     const paths = courses.map((course) => g.shortestPath(course));
-
-    console.log(paths);
 
     const awaitCourseDocuments = [];
 

@@ -1,10 +1,8 @@
-import { ReactElement } from 'react';
-
 interface Props {
   credits: string[];
 }
 
-function Credits({ credits }: Props): ReactElement {
+const Credits = ({ credits }: Props) => {
   return (
     <div>
       <h2 className="font-semibold">
@@ -15,6 +13,6 @@ function Credits({ credits }: Props): ReactElement {
       ))}
     </div>
   );
-}
+};
 
 export default Credits;

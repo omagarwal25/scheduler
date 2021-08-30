@@ -1,10 +1,8 @@
-import React, { ReactElement } from 'react';
-
 interface Props {
   semester: string;
 }
 
-function Semester({ semester }: Props): ReactElement {
+const Semester = ({ semester }: Props) => {
   return (
     <h1 className="italic">
       {semester === 'SEMESTER_ONE'
@@ -16,6 +14,6 @@ function Semester({ semester }: Props): ReactElement {
         : 'Half Year'}
     </h1>
   );
-}
+};
 
 export default Semester;
