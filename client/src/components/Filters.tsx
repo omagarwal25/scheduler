@@ -26,11 +26,13 @@ const Filters = ({ onNewFilter, onClearFilter, courses, filter }: Props) => {
       {getAllOptionsForCourses(courses).map((e) => (
         <Filter filterName={e} filter={filter} onNewFilter={onNewFilter} />
       ))}
-      <Button
-        onClick={onClearFilter}
-        additionalCSS="font-semibold"
-        text="Clear Filters"
-      />
+      {filter.length > 0 && (
+        <Button
+          onClick={onClearFilter}
+          additionalCSS="font-semibold bg-red-600 text-white"
+          text="Clear Filters"
+        />
+      )}
     </div>
   );
 };

@@ -15,13 +15,12 @@ const App = () => {
 
   return (
     <div className="grid grid-flow-row grid-cols-1">
-      {showCourses && (
+      {showCourses ? (
         <CourseSelection
           onSetRequiedCourses={handleSetRequiedCourses}
           onToggleShowCourses={handleToggleShowCourses}
         />
-      )}
-      {!showCourses && (
+      ) : (
         <>
           {requiredCourses.map((e) => (
             <h1>{e}</h1>

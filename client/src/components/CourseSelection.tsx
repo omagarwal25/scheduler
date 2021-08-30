@@ -77,6 +77,7 @@ const CourseSelection = ({
   const handleNewSearch = (value: string) => setSearch(value);
 
   const clearSelections = () => setSelected([]);
+
   return (
     <div className="grid grid-flow-row grid-cols-1">
       <Filters
@@ -89,6 +90,7 @@ const CourseSelection = ({
         onNewSearch={handleNewSearch}
         onGo={getClasses}
         clearSelections={clearSelections}
+        selected={selected}
       />
       <Courses
         courses={courses}
