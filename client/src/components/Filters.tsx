@@ -8,7 +8,6 @@ interface Props {
   courses: CourseInterface[];
   filter: string[];
 }
-
 const Filters = ({ onNewFilter, onClearFilter, courses, filter }: Props) => {
   const getAllOptionsForCourses = (allCourses: CourseInterface[]): string[] => {
     const mapped = allCourses.map((obj) => obj.credits[0]);

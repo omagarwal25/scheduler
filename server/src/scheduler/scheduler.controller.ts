@@ -2,18 +2,19 @@ import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { SchedulerService } from './scheduler.service';
 // import { CreateSchedulerDto } from './dto/create-scheduler.dto';
 // import { UpdateSchedulerDto } from './dto/update-scheduler.dto';
-import { GenerateService } from './generate.service';
+import { GenerateListService } from './generateList.service';
+import { GenerateScheduleService } from './createSchedule.service';
 
 @Controller('scheduler')
 export class SchedulerController {
   constructor(
     private readonly schedulerService: SchedulerService,
-    private readonly generateService: GenerateService,
+    private readonly createScheduleService: GenerateScheduleService,
   ) {}
 
   @Post()
   async create(@Body() courses: string[]) {
-    return this.generateService.generate(courses);
+    return this.createScheduleService.makeSchedule(courses);
     // return this.schedulerService.create(createSchedulerDto);
   }
 

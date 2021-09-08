@@ -4,10 +4,11 @@ import { SchedulerController } from './scheduler.controller';
 import { CoursesModule } from 'src/courses/courses.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Scheduler, SchedulerSchema } from './schemas/scheduler.schema';
-import { GenerateService } from './generate.service';
+import { GenerateListService } from './generateList.service';
+import { GenerateScheduleService } from './createSchedule.service';
 
 @Module({
-  providers: [SchedulerService, GenerateService],
+  providers: [SchedulerService, GenerateListService, GenerateScheduleService],
   controllers: [SchedulerController],
   imports: [
     CoursesModule,

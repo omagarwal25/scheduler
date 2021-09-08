@@ -1,19 +1,11 @@
 import { useState, useEffect } from 'react';
 import { CourseInterface } from '../interfaces/Courses';
 import axios, { AxiosResponse } from 'axios';
-import Courses from './Courses';
-import Toolbar from './Toolbar';
-import Filters from './Filters';
+import Courses from '../components/Courses';
+import Toolbar from '../components/Toolbar';
+import Filters from '../components/Filters';
 
-interface Props {
-  onSetRequiedCourses: (value: string[]) => void;
-  onToggleShowCourses: () => void;
-}
-
-const CourseSelection = ({
-  onSetRequiedCourses,
-  onToggleShowCourses,
-}: Props) => {
+const CourseSelection = () => {
   const [search, setSearch] = useState<string>('');
   const [filter, setFilter] = useState<string[]>([]);
   const [courses, setCourses] = useState<CourseInterface[]>(
@@ -45,11 +37,9 @@ const CourseSelection = ({
           data,
         );
 
-        const output: string[] = response.data;
+        const output: CourseInterface[] = response.data;
 
-        onToggleShowCourses();
-
-        onSetRequiedCourses(output);
+        // IMPLEMENT REDIRECT FOR NEW PAGE
       } catch (error) {
         console.log(error);
       }

@@ -1,39 +1,22 @@
 import { useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import Button from './components/Button';
-import CourseSelection from './components/CourseSelection';
+import CourseSelection from './pages/CourseSelection';
+import { CourseInterface } from './interfaces/Courses';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const App = () => {
-  const [requiredCourses, setRequiredCourses] = useState<string[]>([]);
+  const [requiredCourses, setRequiredCourses] = useState<CourseInterface[]>([]);
   const [showCourses, setShowCourses] = useState<boolean>(true);
 
-  const handleSetRequiedCourses = (value: string[]) => {
-    setRequiredCourses(value);
-  };
-
-  const handleToggleShowCourses = () => setShowCourses(!showCourses);
-
   return (
-    <div className="grid grid-flow-row grid-cols-1">
-      {showCourses ? (
-        <CourseSelection
-          onSetRequiedCourses={handleSetRequiedCourses}
-          onToggleShowCourses={handleToggleShowCourses}
-        />
-      ) : (
-        <>
-          {requiredCourses.map((e) => (
-            <h1>{e}</h1>
-          ))}
-          <Button
-            onClick={handleToggleShowCourses}
-            additionalCSS="m-2 w-auto text-white bg-red-600 m-2"
-          >
-            Go Back
-          </Button>
-        </>
-      )}
-    </div>
+    <Router>
+      <div className="grid grid-flow-row grid-cols-1">
+        <Route path="/">
+          <CourseSelection />
+        </Route>
+      </div>
+    </Router>
   );
 };
 

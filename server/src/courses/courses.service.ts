@@ -39,6 +39,16 @@ export class CoursesService {
     return e;
   }
 
+  async findListOfCourses(courses: string[]) {
+    const promiseListCourses = courses.map((name) => {
+      return this.findName(name);
+    });
+
+    const listCourses: CourseDocument[] = await Promise.all(promiseListCourses);
+
+    return listCourses;
+  }
+
   async update(id: string, updateCourseDto: UpdateCourseDto) {
     const modCourse = await this.findUser(id);
     try {
