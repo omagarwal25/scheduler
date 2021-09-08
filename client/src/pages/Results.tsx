@@ -1,19 +1,23 @@
 import { ReactElement } from 'react';
+import { useParams } from 'react-router';
 import Button from '../components/Button';
 
-interface Props {}
+interface urlParams {
+  scheduleId: string;
+}
 
-function Results({}: Props): ReactElement {
+const Results = () => {
   const handleToggleShowCourses = () => {};
+  const { scheduleId } = useParams<urlParams>();
 
   return (
     <Button
       onClick={handleToggleShowCourses}
       additionalCSS="m-2 w-auto text-white bg-red-600 m-2"
     >
-      Go Back
+      {scheduleId}
     </Button>
   );
-}
+};
 
 export default Results;
