@@ -6,9 +6,6 @@ export type SchedulerDocument = Scheduler & Document;
 @Schema()
 export class Scheduler {
   @Prop({ required: true })
-  name: string;
-
-  @Prop({ required: true })
   user: string;
 
   @Prop({ requied: true, type: [String] })

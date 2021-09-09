@@ -16,6 +16,7 @@ const App = () => {
         <Route path={`/:scheduleId`}>
           <Results />
         </Route>
+        <Route path={'/'}></Route>
       </div>
     </Router>
   );

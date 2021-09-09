@@ -1,15 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { CoursesService } from 'src/courses/courses.service';
+import { CreateSchedulerDto } from './dto/create-scheduler.dto';
 import { GenerateListService } from './generateList.service';
+import { SchedulerService } from './scheduler.service';
 
 @Injectable()
 export class GenerateScheduleService {
   constructor(
     private readonly generateService: GenerateListService,
     private readonly coursesService: CoursesService,
+    private readonly schedulerService: SchedulerService,
   ) {}
 
-  async makeSchedule(courses: string[]) {
+  async makeSchedule(courses: string[], userID: string) {
     const requiredCoursesList = await this.generateService.generateList(
       courses,
     );
@@ -34,6 +37,12 @@ export class GenerateScheduleService {
       }
     });
 
-    return mockSchedule;
+    return await this.schedulerService.create({
+      user: userID,
+      gradeNine: mockSchedule[0],
+      gradeTen: mockSchedule[1],
+      gradeEleven: mockSchedule[2],
+      gradeTwelve: mockSchedule[3],
+    });
   }
 }

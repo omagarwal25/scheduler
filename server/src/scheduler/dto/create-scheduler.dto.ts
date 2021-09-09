@@ -2,9 +2,6 @@ import { IsNotEmpty } from 'class-validator';
 
 export class CreateSchedulerDto {
   @IsNotEmpty()
-  name: string;
-
-  @IsNotEmpty()
   user: string;
 
   @IsNotEmpty()

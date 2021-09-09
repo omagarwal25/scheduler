@@ -30,13 +30,12 @@ export class SchedulerService {
   }
 
   async findOne(id: string) {
-    return await this.findUser(id);
+    return await this.findSchedule(id);
   }
 
   async update(id: string, updateSchedulerDto: UpdateSchedulerDto) {
-    const modSchedule = await this.findUser(id);
+    const modSchedule = await this.findSchedule(id);
     try {
-      if (updateSchedulerDto.name) modSchedule.name = updateSchedulerDto.name;
       if (updateSchedulerDto.user) modSchedule.user = updateSchedulerDto.user;
       if (updateSchedulerDto.gradeNine)
         modSchedule.gradeNine = updateSchedulerDto.gradeNine;
@@ -56,12 +55,12 @@ export class SchedulerService {
   async remove(id: string) {
     const result = await this.schedulerModel.deleteOne({ _id: id }).exec();
     if (result.n === 0) {
-      throw new NotFoundException('Could not find user');
+      throw new NotFoundException('Could not find schedule');
     }
     return { message: `${id} deleted sucessfully` };
   }
 
-  private async findUser(id: string): Promise<SchedulerDocument> {
+  private async findSchedule(id: string): Promise<SchedulerDocument> {
     let schedule: any;
     try {
       schedule = await this.schedulerModel.findById(id).exec();

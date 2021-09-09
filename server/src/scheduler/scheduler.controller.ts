@@ -12,9 +12,9 @@ export class SchedulerController {
     private readonly createScheduleService: GenerateScheduleService,
   ) {}
 
-  @Post()
-  async create(@Body() courses: string[]) {
-    return this.createScheduleService.makeSchedule(courses);
+  @Post(':userID')
+  async create(@Body() courses: string[], @Param('userID') userID: string) {
+    return this.createScheduleService.makeSchedule(courses, userID);
     // return this.schedulerService.create(createSchedulerDto);
   }
 
