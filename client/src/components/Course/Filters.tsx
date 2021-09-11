@@ -1,5 +1,5 @@
 import { CourseInterface } from '../../interfaces/Courses';
-import Button from '../Button';
+import Button from '../Elements/Button';
 import Filter from './Filter';
 
 interface Props {

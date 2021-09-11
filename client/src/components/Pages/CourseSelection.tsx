@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { CourseInterface } from '../interfaces/Courses';
+import { CourseInterface } from '../../interfaces/Courses';
 import axios, { AxiosResponse } from 'axios';
-import Courses from '../components/Course/Courses';
-import Toolbar from '../components/Course/Toolbar';
-import Filters from '../components/Course/Filters';
-import { Schedule } from '../interfaces/Schedule';
+import Courses from '../Course/Courses';
+import Toolbar from '../Course/Toolbar';
+import Filters from '../Course/Filters';
+import { Schedule } from '../../interfaces/Schedule';
 import { Redirect } from 'react-router';
 
 const CourseSelection = () => {

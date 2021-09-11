@@ -1,6 +1,6 @@
 import { CourseInterface } from '../../interfaces/Courses';
-import Button from '../Button';
-import SearchBox from '../SearchBox';
+import Button from '../Elements/Button';
+import SearchBox from '../Elements/SearchBox';
 
 interface Props {
   onNewSearch: (value: string) => void;

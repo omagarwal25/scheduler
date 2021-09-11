@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from '../Button';
+import Button from '../Elements/Button';
 import Login from './Login';
 import Register from './Register';
 

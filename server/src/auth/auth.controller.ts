@@ -28,4 +28,11 @@ export class AuthController {
       return res.send({ message: 'Auth Approved' });
     }
   }
+
+  @Post('logout')
+  @HttpCode(200)
+  async logout(@Response() res) {
+    res.clearCookie('Authentication');
+    return res.send({ message: 'Logged Out' });
+  }
 }

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
-import Button from '../components/Button';
-import { Schedule } from '../interfaces/Schedule';
+import Button from '../Elements/Button';
+import { Schedule } from '../../interfaces/Schedule';
 import axios, { AxiosResponse } from 'axios';
 
 interface urlParams {

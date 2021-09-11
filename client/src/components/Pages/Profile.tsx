@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { Schedule } from '../interfaces/Schedule';
+import { Schedule } from '../../interfaces/Schedule';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import Button from '../Elements/Button';
 
-interface Props {}
+interface Props {
+  onLogout: () => void;
+}
 
-const Profile = (props: Props) => {
+const Profile = ({ onLogout }: Props) => {
   const [schedules, setSchedules] = useState<Schedule[]>();
 
   useEffect(() => {
@@ -22,15 +25,19 @@ const Profile = (props: Props) => {
     };
     fetchSchedule();
   }, []);
+
   return (
-    <div>
+    <div className="p-2">
       {schedules?.map((e) => (
-        <div className="p-2 m-2 bg-gray-300 rounded-md w-max hover:bg-gray-400">
+        <div className="p-2 bg-gray-300 rounded-md w-max hover:bg-gray-400">
           <Link to={`/schedule/${e._id}`}>{`${moment(e.createdAt).format(
             'MMMM Do YYYY',
           )}'s Schedule`}</Link>
         </div>
       ))}
+      <Button onClick={onLogout} additionalCSS="bg-red-500 hover:bg-red-600">
+        Log Out
+      </Button>
     </div>
   );
 };

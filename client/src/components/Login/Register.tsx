@@ -77,17 +77,17 @@ const Register = ({ onLogin }: Props) => {
     <div>
       <form className="flex flex-col">
         <input
-          type="text"
-          onChange={(e) => setUsername(e.target.value)}
-          name="username"
-          placeholder="username"
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          placeholder="email"
           className="p-2 m-1 rounded-md shadow-md"
         />
         <input
           type="text"
-          onChange={(e) => setEmail(e.target.value)}
-          name="email"
-          placeholder="email"
+          onChange={(e) => setUsername(e.target.value)}
+          name="username"
+          placeholder="username"
           className="p-2 m-1 rounded-md shadow-md"
         />
         <input

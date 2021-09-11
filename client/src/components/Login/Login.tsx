@@ -42,7 +42,7 @@ const Login = ({ onLogin }: Props) => {
     <div>
       <form className="flex flex-col">
         <input
-          type="text"
+          type="email"
           onChange={(e) => setEmail(e.target.value)}
           name="email"
           placeholder="email"
