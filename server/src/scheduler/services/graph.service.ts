@@ -1,9 +1,9 @@
 export class GraphService {
   AdjList: any;
-  noOfVerticies: number;
+  noOfVertices: number;
 
-  constructor(noOfVerticies: number) {
-    this.noOfVerticies = noOfVerticies;
+  constructor(noOfVertices: number) {
+    this.noOfVertices = noOfVertices;
     this.AdjList = new Map();
   }
 
@@ -18,10 +18,10 @@ export class GraphService {
 
   topologicalSortUtil(
     v: string,
-    visted: Record<string, unknown>,
+    visited: Record<string, unknown>,
     stack: string[],
   ) {
-    visted[v] = true;
+    visited[v] = true;
 
     const get_keys = this.AdjList.keys();
 
@@ -36,8 +36,8 @@ export class GraphService {
 
     if (vInGetKeys === true) {
       for (const i of this.AdjList.get(v)) {
-        if (visted[i.node] === false) {
-          this.topologicalSortUtil(i.node, visted, stack);
+        if (visited[i.node] === false) {
+          this.topologicalSortUtil(i.node, visited, stack);
         }
       }
     }

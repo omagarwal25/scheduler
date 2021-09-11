@@ -1,4 +1,4 @@
-import { CourseInterface } from '../interfaces/Courses';
+import { CourseInterface } from '../../interfaces/Courses';
 import Course from './Course';
 import Fuse from 'fuse.js';
 

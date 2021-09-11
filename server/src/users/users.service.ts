@@ -1,9 +1,14 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Users, UsersDocument } from './schemas/users.schema';
 import { Model } from 'mongoose';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -12,8 +17,26 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const createdUser = new this.userModel(createUserDto);
-    return await createdUser.save();
+    const pw = createUserDto.password;
+    const hashed = await bcrypt.hash(pw, 10);
+    const user: CreateUserDto = {
+      username: createUserDto.username,
+      email: createUserDto.email,
+      password: hashed,
+    };
+    const createdUser = new this.userModel(user);
+    try {
+      const res = await createdUser.save();
+      return {
+        _id: res._id,
+        username: res.username,
+        email: res.email,
+      };
+    } catch (error) {
+      throw new BadRequestException(
+        'Duplicate User, email address already exists in system.',
+      );
+    }
   }
 
   async findAll() {
@@ -26,6 +49,10 @@ export class UsersService {
 
   async findOneByName(username: string) {
     return await this.userModel.findOne({ username: username });
+  }
+
+  async findOneByEmail(email: string) {
+    return await this.userModel.findOne({ email: email });
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {

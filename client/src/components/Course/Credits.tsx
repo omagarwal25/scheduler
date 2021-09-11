@@ -9,7 +9,9 @@ const Credits = ({ credits }: Props) => {
         {`Credit${credits.length > 1 ? 's:' : ':'}`}
       </h2>
       {credits.map((e) => (
-        <h2 className="italic">{e}</h2>
+        <h2 className="italic" key={e}>
+          {e}
+        </h2>
       ))}
     </div>
   );

@@ -5,28 +5,31 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateSchedulerDto } from './dto/create-scheduler.dto';
-import { Scheduler, SchedulerDocument } from './schemas/scheduler.schema';
-import { UpdateSchedulerDto } from './dto/update-scheduler.dto';
+import { CreateSchedulerDto } from '../dto/create-scheduler.dto';
+import { Scheduler, SchedulerDocument } from '../schemas/scheduler.schema';
+import { UpdateSchedulerDto } from '../dto/update-scheduler.dto';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class SchedulerService {
   constructor(
     @InjectModel(Scheduler.name)
     private schedulerModel: Model<SchedulerDocument>,
+    private usersService: UsersService,
   ) {}
 
   async create(createSchedulerDto: CreateSchedulerDto) {
-    try {
-      const createdSchedule = new this.schedulerModel(createSchedulerDto);
-      return await createdSchedule.save();
-    } catch (error) {
-      throw new BadRequestException('Invalid value for semester.');
-    }
+    const createdSchedule = new this.schedulerModel(createSchedulerDto);
+    return await createdSchedule.save();
   }
 
   async findAll() {
     return await this.schedulerModel.find().exec();
+  }
+
+  async findAllByUser(user: string) {
+    const findUser = await this.usersService.findOne(user);
+    return await this.schedulerModel.find({ user: findUser }).exec();
   }
 
   async findOne(id: string) {
@@ -35,21 +38,18 @@ export class SchedulerService {
 
   async update(id: string, updateSchedulerDto: UpdateSchedulerDto) {
     const modSchedule = await this.findSchedule(id);
-    try {
-      if (updateSchedulerDto.user) modSchedule.user = updateSchedulerDto.user;
-      if (updateSchedulerDto.gradeNine)
-        modSchedule.gradeNine = updateSchedulerDto.gradeNine;
-      if (updateSchedulerDto.gradeTen)
-        modSchedule.gradeTen = updateSchedulerDto.gradeTen;
-      if (updateSchedulerDto.gradeEleven)
-        modSchedule.gradeEleven = updateSchedulerDto.gradeEleven;
-      if (updateSchedulerDto.gradeTwelve)
-        modSchedule.gradeTwelve = updateSchedulerDto.gradeTwelve;
+    if (updateSchedulerDto.user) modSchedule.user = updateSchedulerDto.user;
+    if (updateSchedulerDto.gradeNine)
+      modSchedule.gradeNine = updateSchedulerDto.gradeNine;
+    if (updateSchedulerDto.input) modSchedule.input = updateSchedulerDto.input;
+    if (updateSchedulerDto.gradeTen)
+      modSchedule.gradeTen = updateSchedulerDto.gradeTen;
+    if (updateSchedulerDto.gradeEleven)
+      modSchedule.gradeEleven = updateSchedulerDto.gradeEleven;
+    if (updateSchedulerDto.gradeTwelve)
+      modSchedule.gradeTwelve = updateSchedulerDto.gradeTwelve;
 
-      return await modSchedule.save();
-    } catch (error) {
-      throw new BadRequestException('Invalid value for semester. ');
-    }
+    return await modSchedule.save();
   }
 
   async remove(id: string) {
@@ -57,7 +57,7 @@ export class SchedulerService {
     if (result.n === 0) {
       throw new NotFoundException('Could not find schedule');
     }
-    return { message: `${id} deleted sucessfully` };
+    return { message: `${id} deleted successfully` };
   }
 
   private async findSchedule(id: string): Promise<SchedulerDocument> {

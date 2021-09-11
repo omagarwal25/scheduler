@@ -1,9 +1,16 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
-import { SchedulerService } from './scheduler.service';
-// import { CreateSchedulerDto } from './dto/create-scheduler.dto';
-// import { UpdateSchedulerDto } from './dto/update-scheduler.dto';
-import { GenerateListService } from './generateList.service';
-import { GenerateScheduleService } from './createSchedule.service';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
+import { SchedulerService } from './services/scheduler.service';
+import { GenerateScheduleService } from './services/createSchedule.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('scheduler')
 export class SchedulerController {
@@ -12,10 +19,16 @@ export class SchedulerController {
     private readonly createScheduleService: GenerateScheduleService,
   ) {}
 
-  @Post(':userID')
-  async create(@Body() courses: string[], @Param('userID') userID: string) {
-    return this.createScheduleService.makeSchedule(courses, userID);
-    // return this.schedulerService.create(createSchedulerDto);
+  @UseGuards(JwtAuthGuard)
+  @Post()
+  async create(@Body() courses: string[], @Request() req: any) {
+    return this.createScheduleService.makeSchedule(courses, req.user.userId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('user')
+  findByUser(@Request() req: any) {
+    return this.schedulerService.findAllByUser(req.user.userId);
   }
 
   @Get()
@@ -23,6 +36,7 @@ export class SchedulerController {
     return this.schedulerService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.schedulerService.findOne(id);
@@ -36,7 +50,6 @@ export class SchedulerController {
   ) {
     return this.schedulerService.update(+id, updateSchedulerDto);
   }*/
-
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.schedulerService.remove(id);

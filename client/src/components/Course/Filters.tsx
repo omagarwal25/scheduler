@@ -1,5 +1,5 @@
-import { CourseInterface } from '../interfaces/Courses';
-import Button from './Button';
+import { CourseInterface } from '../../interfaces/Courses';
+import Button from '../Button';
 import Filter from './Filter';
 
 interface Props {
@@ -23,7 +23,12 @@ const Filters = ({ onNewFilter, onClearFilter, courses, filter }: Props) => {
   return (
     <div className="grid grid-flow-row gap-5 p-2 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5">
       {getAllOptionsForCourses(courses).map((e) => (
-        <Filter filterName={e} filter={filter} onNewFilter={onNewFilter} />
+        <Filter
+          filterName={e}
+          filter={filter}
+          onNewFilter={onNewFilter}
+          key={e}
+        />
       ))}
       {filter.length > 0 && (
         <Button

@@ -1,5 +1,5 @@
-import { ReactComponent as SearchSvg } from '../search.svg';
-import { ReactComponent as CloseSvg } from '../close.svg';
+import { ReactComponent as SearchSvg } from '../svgs/search.svg';
+import { ReactComponent as CloseSvg } from '../svgs/close.svg';
 interface Props {
   onNewSearch: (value: string) => void;
   search: string;

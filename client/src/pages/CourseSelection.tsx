@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { CourseInterface } from '../interfaces/Courses';
 import axios, { AxiosResponse } from 'axios';
-import Courses from '../components/Courses';
-import Toolbar from '../components/Toolbar';
-import Filters from '../components/Filters';
+import Courses from '../components/Course/Courses';
+import Toolbar from '../components/Course/Toolbar';
+import Filters from '../components/Course/Filters';
+import { Schedule } from '../interfaces/Schedule';
+import { Redirect } from 'react-router';
 
 const CourseSelection = () => {
   const [search, setSearch] = useState<string>('');
@@ -12,6 +14,7 @@ const CourseSelection = () => {
     [] as CourseInterface[],
   );
   const [selected, setSelected] = useState<CourseInterface[]>([]);
+  const [redirect, setRedirect] = useState<string | null>(null);
 
   useEffect(() => {
     const getGames = async () => {
@@ -32,12 +35,15 @@ const CourseSelection = () => {
     if (selected.length > 0) {
       const data = selected.map((e) => e.name);
       try {
-        const response: AxiosResponse = await axios.post(
+        const res: AxiosResponse = await axios.post(
           'http://localhost:8080/scheduler/',
           data,
+          { withCredentials: true },
         );
 
-        const output: CourseInterface[] = response.data;
+        const resData: Schedule = res.data;
+
+        setRedirect(resData._id);
 
         // IMPLEMENT REDIRECT FOR NEW PAGE
       } catch (error) {
@@ -94,6 +100,7 @@ const CourseSelection = () => {
         selected={selected}
         search={search}
       />
+      {redirect !== null && <Redirect push to={`/schedule/${redirect}`} />}
     </div>
   );
 };
