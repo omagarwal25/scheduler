@@ -4,9 +4,9 @@ export class CreateCourseDto {
   @IsNotEmpty()
   name: string;
 
-  preReqsCatogoryA: { name: string; concurrent: boolean }[];
+  preReqsCategoryA: { name: string; concurrent: boolean }[];
 
-  preReqsCatogoryB: { name: string; concurrent: boolean }[];
+  preReqsCategoryB: { name: string; concurrent: boolean }[];
 
   @IsNotEmpty()
   credits: string[];

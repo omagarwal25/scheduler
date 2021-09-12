@@ -13,6 +13,12 @@ export class Users {
 
   @Prop({ required: true, type: String, unique: true })
   email: string;
+
+  @Prop()
+  refreshToken?: string;
+
+  @Prop()
+  refreshTokenExp?: string;
 }
 
 export const UsersSchema = SchemaFactory.createForClass(Users);

@@ -10,10 +10,10 @@ export class Course {
   name: string;
 
   @Prop({ type: [preReqSchema] })
-  preReqsCatogoryA: preReq[];
+  preReqsCategoryA: preReq[];
 
   @Prop({ type: [preReqSchema] })
-  preReqsCatogoryB: preReq[];
+  preReqsCategoryB: preReq[];
 
   @Prop({ type: [String], required: true })
   credits: string[];

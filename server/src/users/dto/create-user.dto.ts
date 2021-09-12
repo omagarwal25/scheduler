@@ -10,4 +10,8 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   password: string;
+
+  refreshToken?: string;
+
+  refreshTokenExp?: string;
 }
