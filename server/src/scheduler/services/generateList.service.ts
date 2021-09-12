@@ -3,7 +3,6 @@ import { CoursesService } from 'src/courses/courses.service';
 import { SchedulerService } from './scheduler.service';
 import { Course } from 'src/courses/schemas/courses.schema';
 import { GraphService } from './graph.service';
-// import { preReq } from 'src/courses/schemas/prereq.schema';
 
 @Injectable()
 export class GenerateListService {
@@ -99,8 +98,8 @@ export class GenerateListService {
     });
 
     for (const course of courses) {
-      if (course.preReqsCatogoryA.length > 0) {
-        const promisedPreReqInfo = course.preReqsCatogoryA.map((e) =>
+      if (course.preReqsCategoryA.length > 0) {
+        const promisedPreReqInfo = course.preReqsCategoryA.map((e) =>
           this.coursesService.findName(e.name),
         );
 
@@ -112,8 +111,8 @@ export class GenerateListService {
           g.addEdge(course.name, element.name, 1 / element.prestige);
         });
       }
-      if (course.preReqsCatogoryB.length > 0) {
-        const promisedPreReqInfo = course.preReqsCatogoryB.map((e) =>
+      if (course.preReqsCategoryB.length > 0) {
+        const promisedPreReqInfo = course.preReqsCategoryB.map((e) =>
           this.coursesService.findName(e.name),
         );
 

@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { SchedulerService } from './services/scheduler.service';
 import { GenerateScheduleService } from './services/createSchedule.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('scheduler')
 export class SchedulerController {
@@ -19,15 +19,16 @@ export class SchedulerController {
     private readonly createScheduleService: GenerateScheduleService,
   ) {}
 
-  @UseGuards(JwtAuthGuard)
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   async create(@Body() courses: string[], @Request() req: any) {
     return this.createScheduleService.makeSchedule(courses, req.user.userId);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get('user')
+  @UseGuards(AuthGuard('jwt'))
   findByUser(@Request() req: any) {
+    console.log(req);
     return this.schedulerService.findAllByUser(req.user.userId);
   }
 
@@ -36,8 +37,8 @@ export class SchedulerController {
     return this.schedulerService.findAll();
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get(':id')
+  @UseGuards(AuthGuard('jwt'))
   findOne(@Param('id') id: string) {
     return this.schedulerService.findOne(id);
   }
@@ -51,6 +52,7 @@ export class SchedulerController {
     return this.schedulerService.update(+id, updateSchedulerDto);
   }*/
   @Delete(':id')
+  @UseGuards(AuthGuard('jwt'))
   remove(@Param('id') id: string) {
     return this.schedulerService.remove(id);
   }

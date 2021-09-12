@@ -3,20 +3,20 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 export class CreateSchedulerDto {
   @IsNotEmpty()
-  user: CreateUserDto;
+  readonly user: CreateUserDto;
 
   @IsNotEmpty()
-  gradeNine: string[];
+  readonly gradeNine: string[];
 
   @IsNotEmpty()
-  gradeTen: string[];
+  readonly gradeTen: string[];
 
   @IsNotEmpty()
-  gradeEleven: string[];
+  readonly gradeEleven: string[];
 
   @IsNotEmpty()
-  gradeTwelve: string[];
+  readonly gradeTwelve: string[];
 
   @IsNotEmpty()
-  input: string[];
+  readonly input: string[];
 }

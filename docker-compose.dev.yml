@@ -39,6 +39,9 @@ services:
       - 9229:9229
     networks:
       - nestjs-network
+    environment:
+      - AUTH0_DOMAIN=omagarwal.auth0.com
+      - AUTH0_AUDIENCE=http://localhost:8080/api
 networks:
   nestjs-network:
     driver: bridge

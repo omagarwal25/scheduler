@@ -1,4 +1,9 @@
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { SchedulerService } from './services/scheduler.service';
 import { SchedulerController } from './scheduler.controller';
 import { CoursesModule } from 'src/courses/courses.module';

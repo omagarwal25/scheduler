@@ -2,23 +2,23 @@ import { IsNotEmpty } from 'class-validator';
 
 export class CreateCourseDto {
   @IsNotEmpty()
-  name: string;
+  readonly name: string;
 
-  preReqsCatogoryA: { name: string; concurrent: boolean }[];
+  readonly preReqsCategoryA: { name: string; concurrent: boolean }[];
 
-  preReqsCatogoryB: { name: string; concurrent: boolean }[];
-
-  @IsNotEmpty()
-  credits: string[];
+  readonly preReqsCategoryB: { name: string; concurrent: boolean }[];
 
   @IsNotEmpty()
-  gradeReq: number;
+  readonly credits: string[];
 
   @IsNotEmpty()
-  prestige: number;
+  readonly gradeReq: number;
 
   @IsNotEmpty()
-  semester: string;
+  readonly prestige: number;
 
-  courseTier: string;
+  @IsNotEmpty()
+  readonly semester: string;
+
+  readonly courseTier: string;
 }
