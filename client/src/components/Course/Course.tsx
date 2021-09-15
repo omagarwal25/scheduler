@@ -6,14 +6,14 @@ import { getColor } from '../../services/getColor';
 interface Props {
   course: CourseInterface;
   onSelection: (course: CourseInterface) => void;
-  selected: CourseInterface[];
+  selected: boolean;
 }
 
 const Course = ({ course, onSelection, selected }: Props) => {
   let classColor = getColor(course.credits[0]);
   let cssClass: string =
     'p-2 rounded-md cursor-pointer shadow-md bg-gradient-to-bl ';
-  if (selected.includes(course)) {
+  if (selected) {
     if (course.credits[0] === 'PE') {
       cssClass += `hover:to-gray-100 hover:from-gray-100 to-gray-300 from-white focus:to-gray-300 focus:from-white`;
     } else {

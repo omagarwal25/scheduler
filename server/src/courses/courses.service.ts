@@ -9,8 +9,6 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 import { CourseDocument, Course } from './schemas/courses.schema';
 import { Model } from 'mongoose';
 
-// db.multiArr.find({'Keys':{$elemMatch:{$elemMatch:{$in:['carrot']}}}})
-
 @Injectable()
 export class CoursesService {
   constructor(
@@ -53,10 +51,10 @@ export class CoursesService {
     const modCourse = await this.findUser(id);
     try {
       if (updateCourseDto.name) modCourse.name = updateCourseDto.name;
-      if (updateCourseDto.preReqsCatogoryA)
-        modCourse.preReqsCatogoryA = updateCourseDto.preReqsCatogoryA;
-      if (updateCourseDto.preReqsCatogoryB)
-        modCourse.preReqsCatogoryB = updateCourseDto.preReqsCatogoryB;
+      if (updateCourseDto.preReqsCategoryA)
+        modCourse.preReqsCategoryA = updateCourseDto.preReqsCategoryA;
+      if (updateCourseDto.preReqsCategoryB)
+        modCourse.preReqsCategoryB = updateCourseDto.preReqsCategoryB;
       if (updateCourseDto.credits) modCourse.credits = updateCourseDto.credits;
       if (updateCourseDto.gradeReq)
         modCourse.gradeReq = updateCourseDto.gradeReq;
@@ -75,7 +73,7 @@ export class CoursesService {
     if (result.n === 0) {
       throw new NotFoundException('Could not find user');
     }
-    return { message: `${id} deleted sucessfully` };
+    return { message: `${id} deleted successfully` };
   }
 
   private async findUser(id: string): Promise<CourseDocument> {

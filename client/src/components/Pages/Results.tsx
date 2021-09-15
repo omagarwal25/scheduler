@@ -1,17 +1,17 @@
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
-import Button from '../Elements/Button';
 import { Schedule } from '../../interfaces/Schedule';
 import axios, { AxiosResponse } from 'axios';
+import Course from '../Course/Course';
+import Courses from '../Course/Courses';
 
 interface urlParams {
   scheduleId: string;
 }
 
 const Results = () => {
-  const [schedule, setSchedule] = useState<Schedule>();
+  const [schedule, setSchedule] = useState<Schedule>({} as Schedule);
   const [valid, setValid] = useState<boolean>(false);
-  const handleToggleShowCourses = () => {};
   const { scheduleId } = useParams<urlParams>();
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const Results = () => {
           { withCredentials: true },
         );
         setSchedule(response.data);
+        console.log(response.data);
         setValid(true);
       } catch (error) {
         setValid(false);
@@ -31,14 +32,41 @@ const Results = () => {
   }, [scheduleId]);
 
   return (
-    <div className="grid grid-flow-row grid-cols-1">
-      <Button
-        onClick={handleToggleShowCourses}
-        additionalCSS="m-2 w-auto text-white bg-red-600 m-2"
-      >
-        {scheduleId}
-      </Button>
-      {!valid ? <h1>Invalid User</h1> : <h1>{schedule?.gradeNine}</h1>}
+    <div className="grid grid-flow-row grid-cols-1 p-2">
+      {!valid ? (
+        <h1 className="text-red-500">Unauthorized User</h1>
+      ) : (
+        <>
+          <h1>Grade 9</h1>
+          <Courses
+            courses={schedule.gradeNine}
+            onSelection={() => {}}
+            selected={[]}
+            rows={[1, 2, 4]}
+          />
+          <h1>Grade 10</h1>
+          <Courses
+            courses={schedule.gradeTen}
+            onSelection={() => {}}
+            selected={[]}
+            rows={[1, 2, 4]}
+          />
+          <h1>Grade 11</h1>
+          <Courses
+            courses={schedule.gradeEleven}
+            onSelection={() => {}}
+            selected={[]}
+            rows={[1, 2, 4]}
+          />
+          <h1>Grade 12</h1>
+          <Courses
+            courses={schedule.gradeTwelve}
+            onSelection={() => {}}
+            selected={[]}
+            rows={[1, 2, 4]}
+          />
+        </>
+      )}
     </div>
   );
 };

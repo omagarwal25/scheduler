@@ -57,9 +57,13 @@ export class UsersService {
 
   async update(id: string, updateUserDto: UpdateUserDto) {
     const modUser = await this.findUser(id);
-    if (updateUserDto.username) modUser.username = modUser.username;
-    if (updateUserDto.password) modUser.password = modUser.password;
-
+    if (updateUserDto.username) modUser.username = updateUserDto.username;
+    if (updateUserDto.password) modUser.password = updateUserDto.password;
+    if (updateUserDto.email) modUser.email = updateUserDto.email;
+    if (updateUserDto.refreshToken)
+      modUser.refreshToken = updateUserDto.refreshToken;
+    if (updateUserDto.refreshTokenExp)
+      modUser.refreshTokenExp = updateUserDto.refreshTokenExp;
     return await modUser.save();
   }
 
@@ -69,7 +73,7 @@ export class UsersService {
       throw new NotFoundException('Could not find user');
     }
 
-    return { message: `${id} deleted sucessfully` };
+    return { message: `${id} deleted successfully` };
   }
 
   private async findUser(id: string) {

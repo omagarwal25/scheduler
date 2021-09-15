@@ -1,4 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
+import { CreateCourseDto } from 'src/courses/dto/create-course.dto';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 export class CreateSchedulerDto {
@@ -6,16 +7,16 @@ export class CreateSchedulerDto {
   user: CreateUserDto;
 
   @IsNotEmpty()
-  gradeNine: string[];
+  gradeNine: CreateCourseDto[];
 
   @IsNotEmpty()
-  gradeTen: string[];
+  gradeTen: CreateCourseDto[];
 
   @IsNotEmpty()
-  gradeEleven: string[];
+  gradeEleven: CreateCourseDto[];
 
   @IsNotEmpty()
-  gradeTwelve: string[];
+  gradeTwelve: CreateCourseDto[];
 
   @IsNotEmpty()
   input: string[];

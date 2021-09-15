@@ -1,13 +1,15 @@
+import { CourseInterface } from './Courses';
+
 export interface Schedule {
   user: string;
 
-  gradeNine: string[];
+  gradeNine: CourseInterface[];
 
-  gradeTen: string[];
+  gradeTen: CourseInterface[];
 
-  gradeEleven: string[];
+  gradeEleven: CourseInterface[];
 
-  gradeTwelve: string[];
+  gradeTwelve: CourseInterface[];
 
   createdAt: Date;
 

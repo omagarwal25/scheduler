@@ -22,7 +22,9 @@ export class SchedulerController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Body() courses: string[], @Request() req: any) {
-    return this.createScheduleService.makeSchedule(courses, req.user.userId);
+    return this.createScheduleService.makeSchedule(courses, req.user.userId, [
+      'Algebra 1',
+    ]);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -39,6 +41,7 @@ export class SchedulerController {
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
+    // hey this guard is slightly dysfunctional maybe fix?
     return this.schedulerService.findOne(id);
   }
 
@@ -50,6 +53,7 @@ export class SchedulerController {
   ) {
     return this.schedulerService.update(+id, updateSchedulerDto);
   }*/
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.schedulerService.remove(id);

@@ -94,13 +94,12 @@ export class GenerateListService {
 
   private async generateGraph(courses: Course[]) {
     const g = new GraphService(courses.length);
-    courses.forEach((course) => {
-      g.addVertex(course.name);
-    });
+
+    courses.forEach(({ name }) => g.addVertex(name));
 
     for (const course of courses) {
-      if (course.preReqsCatogoryA.length > 0) {
-        const promisedPreReqInfo = course.preReqsCatogoryA.map((e) =>
+      if (course.preReqsCategoryA.length > 0) {
+        const promisedPreReqInfo = course.preReqsCategoryA.map((e) =>
           this.coursesService.findName(e.name),
         );
 
@@ -112,8 +111,8 @@ export class GenerateListService {
           g.addEdge(course.name, element.name, 1 / element.prestige);
         });
       }
-      if (course.preReqsCatogoryB.length > 0) {
-        const promisedPreReqInfo = course.preReqsCatogoryB.map((e) =>
+      if (course.preReqsCategoryB.length > 0) {
+        const promisedPreReqInfo = course.preReqsCategoryB.map((e) =>
           this.coursesService.findName(e.name),
         );
 
