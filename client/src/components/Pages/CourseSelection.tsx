@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { CourseInterface } from '../../interfaces/Courses';
 import axios, { AxiosResponse } from 'axios';
-import Courses from '../Course/Courses';
+import CoursesSelector from '../Course/CoursesSelector';
 import Toolbar from '../Course/Toolbar';
 import Filters from '../Course/Filters';
 import { Schedule } from '../../interfaces/Schedule';
@@ -93,7 +93,7 @@ const CourseSelection = () => {
         selected={selected}
         search={search}
       />
-      <Courses
+      <CoursesSelector
         courses={courses}
         creditFilter={filter}
         onSelection={toggleSelected}

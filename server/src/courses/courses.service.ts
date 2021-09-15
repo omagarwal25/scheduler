@@ -9,8 +9,6 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 import { CourseDocument, Course } from './schemas/courses.schema';
 import { Model } from 'mongoose';
 
-// db.multiArr.find({'Keys':{$elemMatch:{$elemMatch:{$in:['carrot']}}}})
-
 @Injectable()
 export class CoursesService {
   constructor(

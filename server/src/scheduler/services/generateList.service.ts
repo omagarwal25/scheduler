@@ -94,9 +94,8 @@ export class GenerateListService {
 
   private async generateGraph(courses: Course[]) {
     const g = new GraphService(courses.length);
-    courses.forEach((course) => {
-      g.addVertex(course.name);
-    });
+
+    courses.forEach(({ name }) => g.addVertex(name));
 
     for (const course of courses) {
       if (course.preReqsCategoryA.length > 0) {

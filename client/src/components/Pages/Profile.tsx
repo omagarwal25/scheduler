@@ -27,15 +27,18 @@ const Profile = ({ onLogout }: Props) => {
   }, []);
 
   return (
-    <div className="p-2">
+    <div className="">
       {schedules?.map((e) => (
-        <div className="p-2 bg-gray-300 rounded-md w-max hover:bg-gray-400">
+        <div className="p-2 m-2 bg-gray-300 rounded-md w-max hover:bg-gray-400">
           <Link to={`/schedule/${e._id}`}>{`${moment(e.createdAt).format(
             'MMMM Do YYYY',
-          )}'s Schedule`}</Link>
+          )} at ${moment(e.createdAt).format('MM:HH')}`}</Link>
         </div>
       ))}
-      <Button onClick={onLogout} additionalCSS="bg-red-500 hover:bg-red-600">
+      <Button
+        onClick={onLogout}
+        additionalCSS="m-2 bg-red-500 hover:bg-red-600"
+      >
         Log Out
       </Button>
     </div>

@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateSchedulerDto } from '../dto/create-scheduler.dto';
@@ -33,7 +29,12 @@ export class SchedulerService {
   }
 
   async findOne(id: string) {
-    return await this.findSchedule(id);
+    return await this.schedulerModel
+      .findById(id)
+      .populate('gradeNine')
+      .populate('gradeTen')
+      .populate('gradeEleven')
+      .populate('gradeTwelve');
   }
 
   async update(id: string, updateSchedulerDto: UpdateSchedulerDto) {
