@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import CourseSelection from './components/Pages/CourseSelection';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import axios from 'axios';
+
 import Results from './components/Pages/Results';
 import LoginInterface from './components/Login/LoginInterface';
 import NavBar from './components/Nav/NavBar';
 import Sidebar from 'react-sidebar';
 import NavSide from './components/Nav/NavSide';
 import Profile from './components/Pages/Profile';
-import axios from 'axios';
-import { Size } from './enums/Size';
+import CourseSelection from './components/Pages/CourseSelection';
 import WelcomePage from './components/Pages/WelcomePage';
+
+import { Size } from './enums/Size';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);

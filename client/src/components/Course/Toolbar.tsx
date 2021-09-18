@@ -8,6 +8,7 @@ interface Props {
   clearSelections: () => void;
   selected: CourseInterface[];
   search: string;
+  courses: CourseInterface[];
 }
 
 const Toolbar = ({
@@ -16,6 +17,7 @@ const Toolbar = ({
   clearSelections,
   selected,
   search,
+  courses,
 }: Props) => {
   return (
     <div className="flex flex-row">

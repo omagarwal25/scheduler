@@ -44,8 +44,6 @@ const CourseSelection = () => {
         const resData: Schedule = res.data;
 
         setRedirect(resData._id);
-
-        // IMPLEMENT REDIRECT FOR NEW PAGE
       } catch (error) {
         console.log(error);
       }
@@ -92,6 +90,7 @@ const CourseSelection = () => {
         clearSelections={clearSelections}
         selected={selected}
         search={search}
+        courses={courses}
       />
       <CoursesSelector
         courses={courses}
