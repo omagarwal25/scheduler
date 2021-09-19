@@ -4,7 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 import Courses from '../../components/Course/Courses';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import { CoursesSize } from '../../enums/CoursesSize';
+import { CoursesSize } from '../../interfaces/enums/CoursesSize';
 
 const Results = () => {
   const [schedule, setSchedule] = useState<Schedule>({} as Schedule);

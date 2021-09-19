@@ -1,4 +1,4 @@
-import { CoursesSize } from '../../enums/CoursesSize';
+import { CoursesSize } from '../../interfaces/enums/CoursesSize';
 import { CourseInterface } from '../../interfaces/Courses';
 import Course from './Course';
 

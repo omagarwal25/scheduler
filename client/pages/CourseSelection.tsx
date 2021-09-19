@@ -39,7 +39,7 @@ const CourseSelection = () => {
 
   useEffect(() => {
     if (redirect) {
-      router.push(`/schedule ${redirect}`);
+      router.push(`/schedule/${redirect}`);
     }
   }, [redirect]);
 

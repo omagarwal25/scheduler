@@ -1,7 +1,7 @@
 import { CourseInterface } from '../../interfaces/Courses';
 import Fuse from 'fuse.js';
 import Courses from './Courses';
-import { CoursesSize } from '../../enums/CoursesSize';
+import { CoursesSize } from '../../interfaces/enums/CoursesSize';
 
 interface Props {
   courses: CourseInterface[];

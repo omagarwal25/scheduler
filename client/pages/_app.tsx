@@ -4,7 +4,7 @@ import Sidebar from 'react-sidebar';
 import NavSide from '../components/Nav/NavSide';
 import 'tailwindcss/tailwind.css';
 import NavBar from '../components/Nav/NavBar';
-import { Size } from '../enums/Size';
+import { Size } from '../interfaces/enums/Size';
 import { SessionProvider } from 'next-auth/react';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {

@@ -3,7 +3,7 @@ import NavButton from './NavButton';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
 
-import { Size } from '../../enums/Size';
+import { Size } from '../../interfaces/enums/Size';
 
 interface Props {
   onSidebar: () => void;
@@ -46,14 +46,14 @@ const NavSide = ({ onSidebar }: Props) => {
       />
       {session ? (
         <div
-          className="flex p-2 text-red-400 hover:bg-gray-100"
+          className="flex p-2 text-red-400 cursor-pointer hover:bg-gray-100"
           onClick={handleLogout}
         >
           Log out
         </div>
       ) : (
         <div
-          className="flex p-2 text-blue-400 hover:bg-gray-100"
+          className="flex p-2 text-blue-400 cursor-pointer hover:bg-gray-100"
           onClick={handleLogin}
         >
           Log In

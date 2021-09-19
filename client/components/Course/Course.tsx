@@ -1,7 +1,7 @@
 import { CourseInterface } from '../../interfaces/Courses';
 import Credits from './Credits';
 import Semester from './Semester';
-import { getColor } from '../../services/getColor';
+import { getColor } from '../services/getColor';
 
 interface Props {
   course: CourseInterface;

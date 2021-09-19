@@ -1,4 +1,4 @@
-import { getColor } from '../../services/getColor';
+import { getColor } from '../services/getColor';
 
 interface Props {
   filterName: string;

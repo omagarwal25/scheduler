@@ -1,4 +1,4 @@
-import { CoursesSize } from '../enums/CoursesSize';
+import { CoursesSize } from '../../interfaces/enums/CoursesSize';
 
 export function getRows(rows: CoursesSize) {
   switch (rows) {

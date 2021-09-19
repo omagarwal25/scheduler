@@ -1,4 +1,4 @@
-import { Size } from '../../enums/Size';
+import { Size } from '../../interfaces/enums/Size';
 
 interface Props {
   onSidebar: () => void;
