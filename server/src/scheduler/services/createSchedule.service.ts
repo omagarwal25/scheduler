@@ -95,25 +95,6 @@ export class GenerateScheduleService {
     full: CourseDocument[][],
     year: number,
   ): boolean {
-    console.log(
-      preReqs,
-      preReqs.length === 0,
-      full[year].length === 0,
-      preReqs
-        .map(
-          (e) =>
-            e.concurrent ||
-            !full[year].map(({ name }) => name).includes(e.name),
-        )
-        .every((itm) => itm === true),
-      preReqs
-        .map((pre) =>
-          full
-            .map((i) => i.map((h) => h.name).includes(pre.name))
-            .includes(true),
-        )
-        .includes(true),
-    );
     return (
       preReqs.length === 0 ||
       full[year].length === 0 ||

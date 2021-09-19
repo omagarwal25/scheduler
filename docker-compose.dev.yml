@@ -15,6 +15,12 @@ services:
     build:
       context: ./client
       target: dev
+    environment:
+      - GITHUB_CLIENT_ID=#
+      - GITHUB_CLIENT_SECRET=#
+      - DISCORD_CLIENT_ID=#
+      - DISCORD_CLIENT_SECRET=#
+      - NEXTAUTH_URL=http://localhost:30001
     #  environment:
     # PROXY_API: http://playground-web-backend:8080/
     ports:
@@ -23,6 +29,8 @@ services:
     volumes:
       - /app/node_modules
       - ./client:/app
+    networks:
+      - nestjs-network
   scheduler-backend:
     image: scheduler-backend:dev
     build:
@@ -35,8 +43,10 @@ services:
     depends_on:
       - mongo
     ports:
-      - 8080:3000
+      - 8080:6060
       - 9229:9229
+    expose:
+      - 6060
     networks:
       - nestjs-network
 networks:

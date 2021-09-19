@@ -7,7 +7,8 @@
 
 # testing
 /coverage
-
+.next
+.env
 # production
 /build
 

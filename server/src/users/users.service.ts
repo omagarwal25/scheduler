@@ -17,21 +17,9 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const pw = createUserDto.password;
-    const hashed = await bcrypt.hash(pw, 10);
-    const user: CreateUserDto = {
-      username: createUserDto.username,
-      email: createUserDto.email,
-      password: hashed,
-    };
-    const createdUser = new this.userModel(user);
+    const createdUser = new this.userModel(createUserDto);
     try {
-      const res = await createdUser.save();
-      return {
-        _id: res._id,
-        username: res.username,
-        email: res.email,
-      };
+      return await createdUser.save();
     } catch (error) {
       throw new BadRequestException(
         'Duplicate User, email address already exists in system.',
@@ -58,12 +46,10 @@ export class UsersService {
   async update(id: string, updateUserDto: UpdateUserDto) {
     const modUser = await this.findUser(id);
     if (updateUserDto.username) modUser.username = updateUserDto.username;
-    if (updateUserDto.password) modUser.password = updateUserDto.password;
+    if (updateUserDto.thirdPartyId)
+      modUser.thirdPartyId = updateUserDto.thirdPartyId;
     if (updateUserDto.email) modUser.email = updateUserDto.email;
-    if (updateUserDto.refreshToken)
-      modUser.refreshToken = updateUserDto.refreshToken;
-    if (updateUserDto.refreshTokenExp)
-      modUser.refreshTokenExp = updateUserDto.refreshTokenExp;
+    if (updateUserDto.username) modUser.username = updateUserDto.username;
     return await modUser.save();
   }
 

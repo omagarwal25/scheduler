@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -14,7 +14,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "preserve"
   },
-  "include": ["src"]
+  "include": [
+    "next.config.js",
+    "services",
+    "pages",
+    "interfaces",
+    "enums",
+    "components"
+  ],
+  "exclude": ["node_modules"]
 }

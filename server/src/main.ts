@@ -10,7 +10,7 @@ async function bootstrap() {
   app.use(helmet());
   app.use(cookieParser());
   app.enableCors({ credentials: true, origin: 'http://localhost:30001' });
-  await app.listen(3000);
+  await app.listen(6060);
 }
 
 bootstrap();
