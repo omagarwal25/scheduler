@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { Schedule } from '../interfaces/Schedule';
-import Link from 'next/link';
-import moment from 'moment';
 import Button from '../components/Elements/Button';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import router from 'next/router';
+import LinkToSchedule from '../components/Nav/LinkToSchedule';
 
 interface Props {
   onLogout: () => void;
@@ -39,15 +38,9 @@ const Profile = ({ onLogout }: Props) => {
   return (
     <div className="">
       {schedules?.map((e) => (
-        <div className="p-2 m-2 bg-gray-300 rounded-md w-max hover:bg-gray-400">
-          <Link href={`/schedule/${e._id}`}>
-            <a>{`${moment(e.createdAt).format('MMMM Do YYYY')} at ${moment(
-              e.createdAt,
-            ).format('MM:HH')}`}</a>
-          </Link>
-        </div>
+        <LinkToSchedule schedule={e} />
       ))}
-      <Button
+      {/* {<Button
         onClick={() => {
           signOut();
           router.push('/');
@@ -55,7 +48,7 @@ const Profile = ({ onLogout }: Props) => {
         additionalCSS="m-2 bg-red-500 hover:bg-red-600"
       >
         Log Out
-      </Button>
+      </Button>} */}
     </div>
   );
 };

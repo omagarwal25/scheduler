@@ -9,12 +9,13 @@ interface Props {
 
 const NavButton = ({ link, svg, text }: Props) => {
   return (
-    <div className="flex p-2 hover:bg-gray-100">
-      {svg}
-      <Link href={link}>
+    <Link href={link}>
+      <div className="flex p-2 cursor-pointer hover:bg-gray-100">
+        {svg}
+
         <a className="m-1">{text}</a>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 

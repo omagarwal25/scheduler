@@ -10,7 +10,7 @@ const Button = ({ onClick, additionalCSS, children, title }: Props) => {
     <button
       onClick={onClick}
       title={title}
-      className={`p-2 rounded-md shadow-md hover:shadow-none ${additionalCSS}`}
+      className={`transition ease-in-out duration-300 transform p-2 rounded-md shadow-md hover:shadow-none ${additionalCSS}`}
     >
       {children}
     </button>

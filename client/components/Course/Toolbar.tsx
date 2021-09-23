@@ -1,5 +1,7 @@
+import { AlreadyTaken } from '../../interfaces/AlreadyTaken';
 import { CourseInterface } from '../../interfaces/Courses';
 import Button from '../Elements/Button';
+import Dropdown from '../Elements/Dropdown';
 import SearchBox from '../Elements/SearchBox';
 
 interface Props {
@@ -8,7 +10,8 @@ interface Props {
   clearSelections: () => void;
   selected: CourseInterface[];
   search: string;
-  courses: CourseInterface[];
+  alreadyTaken: AlreadyTaken;
+  handleAlreadyTaken: (value: AlreadyTaken) => void;
 }
 
 const Toolbar = ({
@@ -17,10 +20,17 @@ const Toolbar = ({
   clearSelections,
   selected,
   search,
-  courses,
+  alreadyTaken,
+  handleAlreadyTaken,
 }: Props) => {
+  const handleSetLanguage = (value: string) =>
+    handleAlreadyTaken({ ...alreadyTaken, language: value });
+
+  const handleSetMath = (value: string) =>
+    handleAlreadyTaken({ ...alreadyTaken, math: value });
+
   return (
-    <div className="flex flex-row">
+    <div className="md:flex md:flex-row lg:flex lg:flex-row sm:block">
       <SearchBox onNewSearch={onNewSearch} search={search} />
       <Button
         onClick={onGo}
@@ -29,6 +39,22 @@ const Toolbar = ({
       >
         Generate Schedule 📗
       </Button>
+      <div className="md:flex md:w-1/4 lg:flex lg:w-1/4 sm:block">
+        <Dropdown
+          key="Language"
+          handleSelection={handleSetLanguage}
+          selected={alreadyTaken.language}
+          options={['Spanish 1']}
+          classColor="World Language"
+        />
+        <Dropdown
+          key="Math"
+          handleSelection={handleSetMath}
+          classColor="Math"
+          selected={alreadyTaken.math}
+          options={['Algebra 1', 'Math 8']}
+        />
+      </div>
       {selected.length > 0 && (
         <Button
           additionalCSS="w-auto text-white bg-red-600 m-2 hover:bg-red-500"

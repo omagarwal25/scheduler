@@ -21,7 +21,7 @@ const Filters = ({ onNewFilter, onClearFilter, courses, filter }: Props) => {
   };
 
   return (
-    <div className="grid grid-flow-row gap-5 p-2 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5">
+    <div className="p-2 grid grid-flow-row gap-5 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5">
       {getAllOptionsForCourses(courses).map((e) => (
         <Filter
           filterName={e}

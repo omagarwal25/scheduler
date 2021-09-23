@@ -21,7 +21,7 @@ const CoursesSelector = ({
   const options = {
     includeScore: true,
     findAllMatches: true,
-    threshold: 0.4,
+    threshold: 0.25,
     keys: ['name', 'credits', 'gradeReq', 'courseTier'],
   };
 

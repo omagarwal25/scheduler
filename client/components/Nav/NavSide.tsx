@@ -10,7 +10,7 @@ interface Props {
 }
 
 const NavSide = ({ onSidebar }: Props) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const handleLogout = () => signOut();
   const handleLogin = () => signIn();
@@ -44,7 +44,7 @@ const NavSide = ({ onSidebar }: Props) => {
         link="/Profile"
         text="Profile"
       />
-      {session ? (
+      {status === 'authenticated' ? (
         <div
           className="flex p-2 text-red-400 cursor-pointer hover:bg-gray-100"
           onClick={handleLogout}

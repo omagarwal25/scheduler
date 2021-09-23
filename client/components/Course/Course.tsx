@@ -12,7 +12,7 @@ interface Props {
 const Course = ({ course, onSelection, selected }: Props) => {
   return (
     <label
-      className={`p-2 rounded-md cursor-pointer shadow-md bg-gradient-to-bl ${getColor(
+      className={`p-2 transition-all ease-in-out transform duration-300 rounded-md cursor-pointer shadow-md ${getColor(
         course.credits[0],
         selected,
       )}`}

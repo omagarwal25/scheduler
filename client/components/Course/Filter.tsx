@@ -9,7 +9,7 @@ interface Props {
 const Filter = ({ filterName, filter, onNewFilter }: Props) => {
   return (
     <label
-      className={`cursor-pointer p-2 rounded-md shadow-md bg-gradient-to-bl ${getColor(
+      className={`cursor-pointer p-2 rounded-md shadow-md transform transition-all duration-300 ${getColor(
         filterName,
         false,
       )}`}

@@ -7,10 +7,15 @@ import Filters from '../components/Course/Filters';
 import { Schedule } from '../interfaces/Schedule';
 import router from 'next/router';
 import { signIn, useSession } from 'next-auth/react';
+import { AlreadyTaken } from '../interfaces/AlreadyTaken';
 
 const CourseSelection = () => {
   const [search, setSearch] = useState<string>('');
   const [filter, setFilter] = useState<string[]>([]);
+  const [alreadyTaken, setAlreadyTaken] = useState<AlreadyTaken>({
+    math: 'Algebra 1',
+    language: 'Spanish A',
+  });
   const [courses, setCourses] = useState<CourseInterface[]>(
     [] as CourseInterface[],
   );
@@ -89,7 +94,7 @@ const CourseSelection = () => {
   const clearSelections = () => setSelected([]);
 
   return (
-    <div className="grid grid-flow-row grid-cols-1">
+    <div className="z-0 grid grid-flow-row grid-cols-1">
       <Filters
         onNewFilter={handleNewFilter}
         onClearFilter={clearFilter}
@@ -102,7 +107,8 @@ const CourseSelection = () => {
         clearSelections={clearSelections}
         selected={selected}
         search={search}
-        courses={courses}
+        alreadyTaken={alreadyTaken}
+        handleAlreadyTaken={(value: AlreadyTaken) => setAlreadyTaken(value)}
       />
       <CoursesSelector
         courses={courses}
