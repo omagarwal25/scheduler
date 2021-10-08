@@ -6,8 +6,6 @@ COPY package.json ./
 
 COPY package-lock.json ./
 
-RUN apk add python3 make gcc g++
-
 RUN npm i
 
 COPY ./ ./

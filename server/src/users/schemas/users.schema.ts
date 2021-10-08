@@ -8,17 +8,14 @@ export class Users {
   @Prop({ required: true, type: String })
   username: string;
 
-  @Prop({ required: true, type: String })
-  password: string;
+  @Prop()
+  thirdPartyId?: string;
 
-  @Prop({ required: true, type: String, unique: true })
-  email: string;
+  @Prop({ unique: true, type: String })
+  email?: string;
 
   @Prop()
-  refreshToken?: string;
-
-  @Prop()
-  refreshTokenExp?: string;
+  name?: string;
 }
 
 export const UsersSchema = SchemaFactory.createForClass(Users);

@@ -4,14 +4,10 @@ export class CreateUserDto {
   @IsNotEmpty()
   username: string;
 
-  @IsNotEmpty()
   @IsEmail()
-  email: string;
+  email?: string;
 
-  @IsNotEmpty()
-  password: string;
+  name?: string;
 
-  refreshToken?: string;
-
-  refreshTokenExp?: string;
+  thirdPartyId?: string;
 }

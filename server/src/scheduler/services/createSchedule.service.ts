@@ -57,7 +57,6 @@ export class GenerateScheduleService {
 
     while (requiredCourses.length !== 0) {
       for (const i of requiredCourses) {
-        // as much as i love the elegancy of this code, please for the love of god om move it into a function
         if (
           i.gradeReq - 9 <= currentYear &&
           this.checkPre(i.preReqsCategoryA, mockSchedule, currentYear) &&
@@ -99,18 +98,22 @@ export class GenerateScheduleService {
     return (
       preReqs.length === 0 ||
       full[year].length === 0 ||
-      (!preReqs
-        .map(
-          (e) =>
-            e.concurrent ||
-            !full[year].map(({ name }) => name).includes(e.name),
-        )
-        .includes(false) &&
-        preReqs
-          .map(({ name }) =>
-            full.map((i) => i.map((h) => h.name).includes(name)).includes(true),
-          )
-          .includes(true))
+      (preReqs.reduce(
+        (j, e) =>
+          j &&
+          (e.concurrent ||
+            !full[year].map(({ name }) => name).includes(e.name)),
+        true,
+      ) &&
+        preReqs.reduce(
+          (y, pre) =>
+            y ||
+            full
+              .flat()
+              .map((e) => e.name)
+              .includes(pre.name),
+          false,
+        ))
     );
   }
 }

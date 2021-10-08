@@ -1,38 +1,37 @@
-import {
-  Controller,
-  Post,
-  Response,
-  Request,
-  UnauthorizedException,
-  HttpCode,
-} from '@nestjs/common';
+import { Controller, Post, HttpCode, Body } from '@nestjs/common';
+import { UsersService } from 'src/users/users.service';
 
 import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private usersService: UsersService,
+  ) {}
 
   @Post('login')
   @HttpCode(200)
-  async login(@Request() req, @Response() res) {
-    const user = await this.authService.validateUser(
-      req.body.email,
-      req.body.password,
-    );
-    if (!user) {
-      throw new UnauthorizedException();
-    } else {
-      const cookie = await this.authService.login(user);
-      res.setHeader('Set-Cookie', cookie);
-      return res.send({ message: 'Auth Approved' });
-    }
-  }
+  async login(
+    @Body()
+    body: {
+      email: string;
+      id: string | number;
+      name?: string;
+      login: string;
+    },
+  ) {
+    const user = await this.usersService.findOneByEmail(body.email);
 
-  @Post('logout')
-  @HttpCode(200)
-  async logout(@Response() res) {
-    res.clearCookie('Authentication');
-    return res.send({ message: 'Logged Out' });
+    if (user) return this.authService.login(user);
+    else {
+      const newUser = await this.usersService.create({
+        username: body.login,
+        name: body.name ? body.name : undefined,
+        thirdPartyId: body.id ? String(body.id) : undefined,
+        email: body.email,
+      });
+      return await this.authService.login(newUser);
+    }
   }
 }
