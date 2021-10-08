@@ -4,7 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 import Courses from '../../components/Course/Courses';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import { CoursesSize } from '../../interfaces/enums/CoursesSize';
+import { CoursesSize } from '../../lib/CoursesSize';
 import { CourseInterface } from '../../interfaces/Courses';
 
 interface year {
@@ -55,7 +55,7 @@ const Results = () => {
     });
 
   return (
-    <div className="p-2 grid grid-flow-row grid-cols-1">
+    <div className="grid grid-flow-row grid-cols-1 p-2">
       {!valid ? (
         <h1 className="text-red-500">Unauthorized User</h1>
       ) : (

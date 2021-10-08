@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getColor } from '../services/getColor';
+import { getColor } from '../../lib/getColor';
 import DropdownChild from './DropdownChild';
 
 interface Props {
@@ -19,7 +19,7 @@ const Dropdown = ({
 
   return (
     <div
-      className={`grid m-2 w-1/2 h-max grid-flow-row grid-cols-1 transition-all ease-in-out transform duration-300 cursor-pointer shadow-md ${getColor(
+      className={`z-20 grid m-2 w-1/2 h-max grid-flow-row grid-cols-1 transition-all ease-in-out transform duration-300 cursor-pointer shadow-md ${getColor(
         classColor,
         false,
       )}`}
@@ -38,8 +38,7 @@ const Dropdown = ({
         />
         {!dropdown && <h1 className="ml-1">{selected}</h1>}
       </div>
-
-      <div className="relative z-10">
+      <div className="relative z-20">
         {dropdown &&
           options.map((e) => (
             <DropdownChild onClick={() => handleSelection(e)} value={e} />

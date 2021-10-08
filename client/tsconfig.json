@@ -18,11 +18,11 @@
   },
   "include": [
     "next.config.js",
-    "components/services",
     "pages",
     "interfaces",
     "interfaces/enums",
-    "components"
+    "components",
+    "lib"
   ],
   "exclude": ["node_modules"]
 }

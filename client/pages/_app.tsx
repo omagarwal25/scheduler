@@ -17,6 +17,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         open={sidebar}
         onSetOpen={handleToggleSidebar}
         sidebar={<NavSide onSidebar={handleToggleSidebar} />}
+        styles={{
+          sidebar: {
+            zIndex: '30',
+          },
+        }}
       >
         <NavBar onSidebar={handleToggleSidebar} size={Size.FULL} />
         <Component {...pageProps} />

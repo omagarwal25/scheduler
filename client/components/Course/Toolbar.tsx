@@ -39,7 +39,7 @@ const Toolbar = ({
       >
         Generate Schedule 📗
       </Button>
-      <div className="md:flex md:w-1/4 lg:flex lg:w-1/4 sm:block">
+      <div className="block md:flex md:w-1/4 lg:flex lg:w-1/4">
         <Dropdown
           key="Language"
           handleSelection={handleSetLanguage}

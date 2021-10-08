@@ -6,7 +6,13 @@ interface Props {
 const SearchBox = ({ onNewSearch, search }: Props) => {
   return (
     <div className="flex flex-row flex-wrap p-2 m-2 rounded-md shadow-md md:w-1/4 lg:w-1/4">
-      <img src="/svgs/search.svg" width="15" height="15" className="mr-2" />
+      <img
+        alt="Magnifying Glass"
+        src="/svgs/search.svg"
+        width="15"
+        height="15"
+        className="mr-2"
+      />
       <input
         className="flex-grow w-auto focus:border-transparent focus:outline-none"
         type="search"
@@ -16,6 +22,7 @@ const SearchBox = ({ onNewSearch, search }: Props) => {
       />
       {search && (
         <img
+          alt="Cross Button"
           title="Clear Search"
           className="order-last cursor-pointer"
           src="/svgs/close.svg"

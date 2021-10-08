@@ -24,12 +24,10 @@ export class GenerateListService {
       'Science 10',
     ];
 
-    allPaths.forEach((e) => {
-      e.forEach((y) => {
-        if (!output.includes(y)) {
-          output.push(y);
-        }
-      });
+    allPaths.flat().forEach((y) => {
+      if (!output.includes(y)) {
+        output.push(y);
+      }
     });
 
     return output;

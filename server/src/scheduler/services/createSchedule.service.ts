@@ -98,20 +98,22 @@ export class GenerateScheduleService {
     return (
       preReqs.length === 0 ||
       full[year].length === 0 ||
-      (preReqs
-        .map(
-          (e) =>
-            e.concurrent ||
-            !full[year].map(({ name }) => name).includes(e.name),
-        )
-        .every((itm) => itm === true) &&
-        preReqs
-          .map((pre) =>
+      (preReqs.reduce(
+        (j, e) =>
+          j &&
+          (e.concurrent ||
+            !full[year].map(({ name }) => name).includes(e.name)),
+        true,
+      ) &&
+        preReqs.reduce(
+          (y, pre) =>
+            y ||
             full
-              .map((i) => i.map((h) => h.name).includes(pre.name))
-              .includes(true),
-          )
-          .includes(true))
+              .flat()
+              .map((e) => e.name)
+              .includes(pre.name),
+          false,
+        ))
     );
   }
 }

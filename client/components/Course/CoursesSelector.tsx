@@ -1,7 +1,7 @@
 import { CourseInterface } from '../../interfaces/Courses';
 import Fuse from 'fuse.js';
 import Courses from './Courses';
-import { CoursesSize } from '../../interfaces/enums/CoursesSize';
+import { CoursesSize } from '../../lib/CoursesSize';
 
 interface Props {
   courses: CourseInterface[];
@@ -25,6 +25,8 @@ const CoursesSelector = ({
     keys: ['name', 'credits', 'gradeReq', 'courseTier'],
   };
 
+  const fuse = new Fuse(courses, options);
+
   /**
    *
    * @param coursesList {CourseInterface[]}
@@ -41,7 +43,6 @@ const CoursesSelector = ({
     let searchedCourses: CourseInterface[];
 
     if (search !== '') {
-      const fuse = new Fuse(courses, options);
       searchedCourses = fuse.search(search).map((e) => e.item);
     } else {
       searchedCourses = coursesList;
